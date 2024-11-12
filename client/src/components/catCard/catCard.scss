@@ -3,9 +3,10 @@
     cursor: pointer;
     position: relative;
     width: 252px;
-    height: 344px;
+    height: 334px;
     color: white;
-
+    box-sizing: border-box;
+    overflow: hidden;
     img {
         width: 100%;
         height: 100%;

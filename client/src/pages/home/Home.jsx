@@ -1,7 +1,6 @@
 import React from "react";
 import "./home.scss";
 import Featured from "../../components/featured/Featured";
-import TrustedBy from "../../components/Trusted By/TrustedBy"; // Ensure the path is correct
 import Slide from "../../components/Slide/Slide";
 import { cards, projects } from "../../data";
 import CatCard from "../../components/catCard/CatCard";
@@ -14,72 +13,33 @@ const Home = () => {
   return (
     <div className="home">
       <Featured />
-      <TrustedBy />
+      <div className="slidhome">
       <Slide slidesToShow={5} arrowsScroll={5}>
         {cards.map((card) => (
           <CatCard item={card} key={card.id} />
         ))}
       </Slide>
-      <div className="features">
-        <div className="container">
-          <div className="item">
-            <h1>The best part? Everything.</h1>
-            <div className="title">
-              <img src="/images/check.png" alt="check" />
-              Stick to your budget
-            </div>
-            <p>
-              Find the right service for every price point. No hourly rates,
-              just project-based pricing.
-            </p>
-            <div className="title">
-              <img src="/images/check.png" alt="check" />
-              Get quality work done quickly
-            </div>
-            <p>
-              Hand your project over to a talented freelancer in minutes, get
-              long-lasting results.
-            </p>
-            <div className="title">
-              <img src="/images/check.png" alt="check" />
-              Pay when you're happy
-            </div>
-            <p>
-              Upfront quotes mean no surprises. Payments only get released when
-              you approve.
-            </p>
-            <div className="title">
-              <img src="/images/check.png" alt="check" />
-              Count on 24/7 support
-            </div>
-            <p>
-              Our round-the-clock support team is available to help anytime,
-              anywhere.
-            </p>
-          </div>
-          <div className="item">
-            <video src="/images/video.mp4" controls width="100%"></video>
-          </div>
-        </div>
       </div>
+
       <div className="explore">
         <div className="container">
           <h1>You need it, we've got it</h1>
           <div className="items">
             {[
-              { cat: "Graphics & Design", img: "graphics-design.d32a2f8.svg" },
-              { cat: "Digital Marketing", img: "online-marketing.74e221b.svg" },
+              { cat: "Painter", img: "https://img.icons8.com/color/48/painting-a-wall.png" },
+              { cat: "Carpenter ", img: "https://img.icons8.com/color/48/sawing-man.png" },
               {
-                cat: "Writing & Translation",
-                img: "writing-translation.32ebe2e.svg",
+                cat: "Electrician",
+                img: "https://img.icons8.com/external-itim2101-flat-itim2101/64/external-electrician-male-occupation-avatar-itim2101-flat-itim2101.png",
               },
-              { cat: "Video & Animation", img: "video-animation.f0d9d71.svg" },
-              { cat: "Music & Audio", img: "music-audio.320af20.svg" },
-              { cat: "Programming & Tech", img: "programming.9362366.svg" },
-              { cat: "Business", img: "business.bbdf319.svg" },
-              { cat: "Lifestyle", img: "lifestyle.745b575.svg" },
-              { cat: "Data", img: "data.718910f.svg" },
-              { cat: "Photography", img: "photography.01cf943.svg" },
+              { cat: "Plumber", img: "https://img.icons8.com/color/48/plumber.png" },
+              { cat: "Handyman", img: "https://img.icons8.com/external-flat-juicy-fish/60/external-handyman-side-hustles-flat-flat-juicy-fish.png" },
+              { cat: "Welder ", img: "https://img.icons8.com/external-wanicon-flat-wanicon/64/external-welder-labour-day-wanicon-flat-wanicon.png" },
+              { cat: "Window Installer", img: "https://img.icons8.com/emoji/48/window-emoji.png" },
+              { cat: "Furniture Maker", img: "https://img.icons8.com/arcade/64/furniture.png" },
+              { cat: "Cleaning Services", img: "https://img.icons8.com/arcade/64/cleaning-service.png" },
+              { cat: "Garage Door Technician", img: "https://img.icons8.com/color/48/door.png" },
+              { cat: "Tiler", img: "https://img.icons8.com/external-others-pike-picture/50/external-equipment-tiler-work-equipment-others-pike-picture-2.png" }
             ].map(({ cat, img }) => (
               <div
                 className="item"
@@ -87,7 +47,7 @@ const Home = () => {
                 key={cat}
               >
                 <img
-                  src={`https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/${img}`}
+                  src={img}
                   alt={cat}
                 />
                 <div className="line"></div>
@@ -101,64 +61,43 @@ const Home = () => {
         <div className="container">
           <div className="item">
             <h1>
-              fiverr{" "}
+            ServiceBridge{" "}
               <em>
-                <span style={{ fontWeight: "300" }}>business.</span>
+                <span style={{ fontWeight: "300" }}>business Solutions.</span>
               </em>
             </h1>
             <h1>
-              A solution built for <em>business</em>
+            A platform designed to connect Consumer with skilled service providers for all your needs.
             </h1>
             <p>
-              Upgrade to a curated experience to access vetted talent and
-              exclusive tools.
+            Unlock a tailored experience to access trusted professionals and exclusive tools.
             </p>
             {[
-              "Talent matching",
-              "Dedicated account management",
-              "Team collaboration tools",
-              "Business payment solutions",
+              "Service Provider Matching ",
+              "Tailored Support ",
+              "collaboration tools",
+              "Secure Payment Solutions",
             ].map((title) => (
               <div className="title" key={title}>
                 <img src="/images/check.png" alt="check" />
                 {title}
               </div>
             ))}
-            <button>Explore Fiverr Business</button>
+            <button>Explore ServiceBridge</button>
           </div>
-          <div className="item">
+          <div className="item" style={{ width: '300px' }}>
             <img
-              src="images/business-desktop-870-x1.webp"
+              src="https://images.stockcake.com/public/3/3/7/3378395b-b8d8-41c8-9f15-a8b7a749f7e8_large/laborer-carrying-bricks-stockcake.jpg" className="imglab"
+              style={{ width: '300px', height: 'auto', }}
               alt="business solution"
             />
           </div>
         </div>
       </div>
-      <div className="logo_maker">
-        <div className="items">
-          <div className="left">
-            <h1>
-              fiverr <span>logomaker.</span>
-            </h1>
-            <p className="first_para">
-              Make an incredible logo
-              <br />
-              <em className="first_para_em"> in minutes</em>
-            </p>
-            <p className="second_para">
-              Pre-designed by top talent. Just add your touch.
-            </p>
-            <button className="logo_button">
-              <strong>Try Fiverr Logo Maker</strong>
-            </button>
-          </div>
-          <div className="right">
-            <img src="/images/logomaker.webp" alt="Logo Maker" />
-          </div>
-        </div>
-      </div>
+    
+           
       {/* second slidebar */}
-      <div className="secondslide">
+      {/* <div className="secondslide">
         <p className="second_slider_heading">Inspiring work made on Fiverr</p>
         <Slide slidesToShow={4} arrowsScroll={5}>
           {projects.map((card) => (
@@ -181,7 +120,7 @@ const Home = () => {
             <img src="/images/last_hero.webp" alt="Last Hero" />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

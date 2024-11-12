@@ -1,7 +1,11 @@
 .register {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    margin-top:200px ;
+    padding: 30px;
   
     form {
       width: 960px;
@@ -39,7 +43,7 @@
           color: white;
           font-weight: 500;
           font-size: 18px;
-          background-color: #1dbf73;
+          background-color: rgb(118, 118, 230);
           cursor: pointer;
         }
   

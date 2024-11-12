@@ -7,18 +7,17 @@ const Footer = () => {
                 <div className="top">
                     <div className="item">
                         <h2>Categories</h2>
-                        <span>Graphics & Design</span>
-                        <span> Digital Marketing</span>
-                        <span>Writing & Translation</span>
-                        <span>Video & Animation</span>
-                        <span> Music & Audio</span>
-                        <span> Programming & Tech</span>
-                        <span> Data</span>
-                        <span>Business</span>
-                        <span>Lifestyle</span>
-                        <span>Photography</span>
-                        <span> End-to-End Projects</span>
-                        <span>Sitemap</span>
+                        <span>Painter</span>
+                        <span>Carpenter</span>
+                        <span>Electrician</span>
+                        <span>PLumber</span>
+                        <span>Hnadyman</span>
+                        <span>Window Installer</span>
+                        <span>Cleaning Services</span>
+                        <span>Furniture Maker</span>
+                        <span>Welder</span>
+                        <span>Garage Door Technician</span>
+                        <span>Tiler</span>
                     </div>
                     <div className="item">
                         <h2>About</h2>
@@ -72,25 +71,10 @@ const Footer = () => {
                 <hr />
                 <div className="bottom">
                     <div className="left">
-                        <h2>fiverr</h2>
-                        <span>© Fiverr International Ltd. 2023</span>
+                        <h2>ServiceBridge</h2>
+    
                     </div>
                     <div className="right">
-                        <div className="social">
-                            <a href="https://twitter.com/fiverr"> <img src="/images/twitter.png" alt=""  /></a>
-                            <a href="https://www.facebook.com/Fiverr/"> <img src="/images/facebook.png" alt=""  /></a>
-                            <a href="https://www.linkedin.com/company/fiverr-com"><img src="/images/linkedin.png" alt=""  /></a>
-                            <a href="https://www.pinterest.com/fiverr/"> <img src="/images/pinterest.png" alt=""  /></a>
-                            <a href="https://www.instagram.com/fiverr/"> <img src="/images/instagram.png" alt=""  /></a> 
-                        </div>
-                        <div className="link">
-                            <img src="/images/language.png" alt="" />
-                            <span>English</span>
-                        </div>
-                        <div className="link">
-                            <img src="/images/coin.png" alt="" />
-                            <span>USD</span>
-                        </div>
                         <img src="/images/accessibility.png" alt="" />
                         
                     </div>

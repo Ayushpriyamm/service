@@ -1,4 +1,20 @@
+.home{
+    width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    margin: 0%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+    padding: 0%;
+}
 .home {
+    .slidhome{
+        padding-top: 80px;
+        height: 500px;
+        background-color:black;
+        align-items: center;
+    }
     .features {
         background-color: #f1fdf7;
         display: flex;
@@ -6,7 +22,7 @@
         padding: 100px 90px;
 
         &.dark {
-            background-color: rgb(13, 8, 77);
+            background-color:black;
 
             h1 {
                 color: white !important;
@@ -26,7 +42,7 @@
             }
 
             img {
-                background-color: rgb(13, 8, 77);
+                background-color: black;
                 width: 100%;
             }
 
@@ -49,26 +65,26 @@
         }
 
         .container {
-            width: 100%; // Changed from 1400px to 100%
-            max-width: 1400px; // Set a maximum width
+            width: 100%; 
+            max-width: 1400px; 
             display: flex;
             align-items: center;
-            gap: 20px; // Reduced gap for responsiveness
-            flex-wrap: wrap; // Allow items to wrap on smaller screens
+            gap: 20px; 
+            flex-wrap: wrap; 
 
             .item {
                 display: flex;
                 flex-direction: column;
-                gap: 15px;
-                flex: 1; // Allow flexibility in width
+                justify-content: space-between;
+                gap:15px;
+                flex: 1;
 
                 &:first-child {
                     flex: 2;
                 }
 
                 &:last-child {
-                    flex: 3;
-                    background-color: black;
+                    flex: 2;
                 }
 
                 h1 {
@@ -98,8 +114,8 @@
                 }
 
                 video {
-                    width: 100%; // Changed from 720px to 100%
-                    max-width: 720px; // Set a maximum width for larger screens
+                    width: 100%;
+                    max-width: 720px;
                 }
             }
         }
@@ -112,6 +128,7 @@
 
         .items {
             display: flex;
+          
             justify-content: center;
             gap: 20px;
             font-family: 'Montserrat', 'sans-serif';
@@ -191,6 +208,7 @@
 
             .items {
                 width: 100%;
+                
                 display: flex;
                 justify-content: space-between;
                 flex-wrap: wrap;
@@ -198,6 +216,7 @@
 
                 .item {
                     width: 100%; // Allow full width on small screens
+                    
                     max-width: 250px; // Set a maximum width
                     height: 150px;
                     display: flex;
@@ -255,6 +274,7 @@
     .last_hero {
         .items {
             margin: 40px 5%; // Use percentage for responsive margin
+           
 
             .left {
                 position: relative; // Changed to relative for better control
@@ -360,4 +380,8 @@
             margin: 10px 10%; // Adjust margin
         }
     }
+}
+.imglab{
+    width: 100px;
+    // height: 400px;
 }
