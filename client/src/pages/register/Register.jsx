@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './resgister.scss';
+import "./resgister.scss";
 import upload from "../../utils/upload";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
@@ -12,40 +12,39 @@ const Register = () => {
     img: "",
     country: "",
     isSeller: false,
-    desc: ""
-  })
+    desc: "",
+  });
 
   const navigate = useNavigate();
 
   const handlechange = (e) => {
-    setUser(prev => {
+    setUser((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
-    })
-  }
+    });
+  };
 
   const handleSeller = (e) => {
-    setUser(prev => {
+    setUser((prev) => {
       return { ...prev, isSeller: e.target.checked };
-    })
-  }
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = await upload(file);
     try {
-      await newRequest.post('/auth/register', {
+      await newRequest.post("/auth/register", {
         ...user,
-        img: url
+        img: url,
       });
-      navigate('/')
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-
-  return ([
+  return [
     <div className="register">
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>Create a new account</h1>
           <label htmlFor="">Username</label>
@@ -63,15 +62,11 @@ const Register = () => {
             onChange={handlechange}
           />
           <label htmlFor="">Password</label>
-          <input
-            name="password"
-            type="password"
-            onChange={handlechange}
-          />
+          <input name="password" type="password" onChange={handlechange} />
           <label htmlFor="">Profile Picture</label>
           <input
             type="file"
-            onChange={e => {
+            onChange={(e) => {
               setFile(e.target.files[0]);
             }}
           />
@@ -89,8 +84,7 @@ const Register = () => {
           <div className="toggle">
             <label htmlFor="">Activate the seller account</label>
             <label className="switch">
-              <input type="checkbox"
-                onChange={handleSeller} />
+              <input type="checkbox" onChange={handleSeller} />
               <span className="slider round"></span>
             </label>
           </div>
@@ -112,7 +106,7 @@ const Register = () => {
           ></textarea>
         </div>
       </form>
-    </div>
-  ]);
-}
+    </div>,
+  ];
+};
 export default Register;

@@ -28,7 +28,7 @@ app.use(cors({origin:"http://localhost:3000",credentials:true}));
 app.use(express.json());
 app.use(cookieParser());
 
-app.use('/api/auth/', authRoute);
+app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
 app.use('/api/gigs', gigRoute);
 app.use('/api/reviews', reviewRoute);
