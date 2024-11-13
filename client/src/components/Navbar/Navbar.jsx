@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import logo from "../Navbar/service.png";
@@ -6,11 +6,9 @@ import "./navbar.scss";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
-  const [open, setOpen] = useState(false); // Toggle for user options
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false); // Toggle for mobile menu
   const [input, setInput] = useState(""); // State for search input
   const { pathname } = useLocation();
-  const optionsRef = useRef(null); // Reference for user options dropdown
   const navigate = useNavigate();
 
   // Handle scroll effect for active navbar state
@@ -40,17 +38,6 @@ const Navbar = () => {
     navigate(`/gigs?search=${input}`);
   };
 
-  // Close dropdown if clicked outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   return (
     <div className={`navbar ${active || pathname !== "/" ? "active" : ""}`}>
       <div className="container">
@@ -69,78 +56,63 @@ const Navbar = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
-            <div className="search">
-              <img src="/images/search.png" alt="" onClick={handleSubmit} />
+            <div className="search" onClick={handleSubmit}>
+              <img src="/images/search.png" alt="" />
             </div>
           </div>
         )}
 
         <div className="links">
-          <span onClick={() => navigate("/becomeseller")}>Services</span>
-          <span className="tooltip">
-            Explore
-            <span className="tooltiptext">{/* Tooltip content */}</span>
-          </span>
-          <span>
-            <img
-              src="/images/language.png"
-              alt=""
-              width={"18px"}
-              height={"16px"}
-              style={{ marginRight: "10px" }}
-            />
-            English
-          </span>
-          <Link to="/login" className="link">
-            <span>Sign in</span>
-          </Link>
-
-          {/* Show this only if the user is not a seller */}
-          {!current_user?.isSeller && (
-            <span onClick={() => navigate("/becomeSeller")}>
-              Become a Service Provider
-            </span>
-          )}
+          <span onClick={() => navigate("/gigs")}>Services</span>
           {!current_user && (
-            <button onClick={() => navigate(`/register`)}>Join</button>
+            <>
+              <Link to="/login" className="link">
+                <span>Sign in</span>
+              </Link>
+              <button onClick={() => navigate(`/register`)}>Join</button>
+            </>
           )}
           {current_user && (
-            <div
-              className="user"
-              onClick={() => setOpen(!open)} // Toggle the dropdown menu
-              ref={optionsRef}
-            >
-              <img src={current_user.img || "/images/noavtar.jpeg"} alt="" />
-              <span>{current_user?.username}</span>
-              {open && (
-                <div className="options">
-                  {current_user.isSeller && (
-                    <>
-                      <Link to="/mygigs" className="link">
-                        Gigs
-                      </Link>
-                      <Link to="/add" className="link">
-                        Add New Gig
-                      </Link>
-                    </>
-                  )}
-                  <Link to="/orders" className="link">
-                    Orders
+            <>
+              {current_user.isSeller ? (
+                <>
+                  <Link to="/mygigs" className="link">
+                    Gigs
                   </Link>
-                  <Link to="/messages" className="link">
-                    Messages
+                  <Link to="/add" className="link">
+                    Add New Gig
                   </Link>
-                  <Link onClick={handleLogout} className="link">
-                    Logout
-                  </Link>
-                </div>
+                </>
+              ) : (
+                <span onClick={() => navigate("/becomeSeller")}>
+                  Become a Service Provider
+                </span>
               )}
-            </div>
+              <Link to="/orders" className="link">
+                Orders
+              </Link>
+              <Link to="/messages" className="link">
+                Messages
+              </Link>
+              <Link onClick={handleLogout} className="link">
+                Logout
+              </Link>
+              <div className="user-info">
+                <img
+                  src={current_user.img || "/images/noavtar.jpeg"}
+                  alt="User Avatar"
+                  className="user-icon"
+                />
+              </div>
+            </>
           )}
         </div>
 
         {/* Mobile menu toggle */}
-        <div className="hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <div
+          className="hamburger"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
           <img
             src="https://img.icons8.com/ios/50/equal-sign.png"
             alt="Hamburger Menu"
