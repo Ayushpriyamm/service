@@ -35,8 +35,8 @@ const GigCard = ({ item }) => {
                 <div className="details">
                     <img src="/images/heart.png" alt="" />
                     <div className="price">
-                        <span>STARING AT</span>
-                        <h2>$ {item.price}<sup>99</sup></h2>
+                        <span>Price</span>
+                        <h2>Rs. {item.price}</h2>
                     </div>
                 </div>
             </div>

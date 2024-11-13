@@ -36,23 +36,23 @@ const GigSchema = new Schema({
   },
   images:{
     type:[String],
-    require:false
+    // require:false
   },
   sortTitle:{
     type:String,
-    require:true
+    // require:true
   },
   sortDesc:{
     type:String,
-    require:true
+    // require:true
   },
   deliveryTime:{
     type:Number,
-    require:true
+    // require:true
   },
   rivisonNumber:{
     type:Number,
-    require:true
+    // require:true
   },
   features:{
     type:[String],

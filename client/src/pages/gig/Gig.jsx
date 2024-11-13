@@ -116,7 +116,9 @@ const Gig = () => {
                           </span>
                         </div>
                       )}
+                      <Link to="/message">
                       <button>Contact Me</button>
+                      </Link>
                     </div>
                   </div>
                 )}

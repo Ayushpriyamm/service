@@ -47,7 +47,7 @@
             }
 
             button {
-                background-color: #1dbf73;
+                background-color: rgb(113, 113, 211);
                 color: #fff;
                 font-weight: 500;
                 padding: 10px 20px;
@@ -68,9 +68,9 @@
             width: 100%; 
             max-width: 1400px; 
             display: flex;
-            align-items: center;
+            // align-items: center;
             gap: 20px; 
-            flex-wrap: wrap; 
+            // flex-wrap: wrap; 
 
             .item {
                 display: flex;
@@ -200,6 +200,9 @@
 
         .container {
             width: 100%; // Changed from 1400px to 100%
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             max-width: 1400px; // Set a maximum width
 
             h1 {

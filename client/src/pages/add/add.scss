@@ -1,10 +1,15 @@
 .add {
   display: flex;
-  justify-content: center;
+  // flex-direction: column;
+  // justify-content: center;
   font-family: 'Montserrat', 'sans-serif';
+  margin-top: 80px;
 
   .container {
+    display: flex;
     width: 1400px;
+    flex-direction: column;
+    justify-content: center;
     padding: 50px 0px;
 
     h1 {
@@ -15,7 +20,8 @@
 
     .sections {
       display: flex;
-      justify-content: space-between;
+         
+      justify-content:space-evenly;
       gap: 100px;
 
       .left,
@@ -57,7 +63,7 @@
 
         button {
           color: white;
-          background: #1dbf73;
+          background:rgb(141, 141, 231);
           border: none;
           padding: 20px;
           font-weight: 500;
