@@ -2,13 +2,10 @@
     display: flex;
     justify-content: center;
     padding-bottom: 100px;
-
-    .container {
+    .container1 {
         width: 100%; // Change from 1400px to 100% for responsiveness
         max-width: 1400px; // Set a maximum width
-
         position: relative; // Add positioning to allow absolute children to position correctly
-
         .carousel-prev,
         .carousel-next {
             width: 50px;
@@ -20,43 +17,34 @@
             transform: translateY(-50%); // Adjust for exact centering
             margin: 0; // Remove margin
             cursor: pointer; // Change cursor for better UX
-
             &:hover {
                 background-color: #ccc; // Optional: add a hover effect
             }
         }
-
         .carousel-prev {
             left: 10px; // Position to the left
         }
-
         .carousel-next {
             right: 10px; // Position to the right
         }
     }
-
     // Media queries for responsiveness
     @media (max-width: 1200px) {
         padding-bottom: 80px; // Adjust padding for medium screens
     }
-
     @media (max-width: 768px) {
         padding-bottom: 60px; // Further adjust padding for smaller screens
-
         .container {
             width: 90%; // Use a percentage width on smaller screens
         }
-
         .carousel-prev,
         .carousel-next {
             width: 40px; // Make buttons smaller
             height: 40px; // Make buttons smaller
         }
     }
-
     @media (max-width: 480px) {
         padding-bottom: 40px; // Further reduce padding for mobile
-
         .carousel-prev,
         .carousel-next {
             width: 30px; // Even smaller buttons for mobile

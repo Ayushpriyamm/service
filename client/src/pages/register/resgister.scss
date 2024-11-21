@@ -1,111 +1,142 @@
 .register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+  font-family: 'Montserrat', sans-serif;
+
+  form {
     display: flex;
-    flex-direction: row;
+    width: 70%;
+    max-width: 1200px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
     flex-wrap: wrap;
+  }
+
+  .left, .right {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  label {
+    font-size: 14px;
+    color: #777;
+  }
+
+  input, textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  input[type="file"] {
+    padding: 5px;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  .toggle {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    margin-top:200px ;
-    padding: 30px;
-  
-    form {
-      width: 960px;
-      padding: 100px 0px;
-      display: flex;
-      gap: 120px;
-  
-      h1 {
-        color: gray;
-        margin-bottom: 20px;
-      }
-  
-      .left,
-      .right {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        justify-content: space-between;
-  
-        label {
-          color: gray;
-          font-size: 18px;
-        }
-  
-        input,
-        textarea {
-          padding: 20px;
-          border: 1px solid rgb(216, 214, 214);
-        }
-  
-        button {
-          border: none;
-          padding: 20px;
-          color: white;
-          font-weight: 500;
-          font-size: 18px;
-          background-color: rgb(118, 118, 230);
-          cursor: pointer;
-        }
-  
-        .toggle {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-  
-          .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-          }
-  
-          /* Hide default HTML checkbox */
-          .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-          }
-  
-          .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: 0.4s;
-            transition: 0.4s;
-            border-radius: 24px;
-          }
-  
-          .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: 0.4s;
-            transition: 0.4s;
-            border-radius: 50%;
-          }
-  
-          input:checked + .slider {
-            background-color: #2196f3;
-          }
-  
-          input:focus + .slider {
-            box-shadow: 0 0 1px #2196f3;
-          }
-  
-          input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-          }
-        }
-      }
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 20px;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+  }
+
+  input:checked + .slider {
+    background-color: #4caf50;
+  }
+
+  input:checked + .slider:before {
+    transform: translateX(14px);
+  }
+
+  .right textarea {
+    width: 100%;
+  }
+
+  .left input[type="text"], 
+  .left input[type="email"], 
+  .left input[type="password"], 
+  .left input[type="tel"], 
+  .left textarea {
+    width: 100%;
+  }
+
+  button {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  @media (max-width: 768px) {
+    .left, .right {
+      width: 100%;
+    }
+
+    .right textarea {
+      width: 100%;
     }
   }
+}

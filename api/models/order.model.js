@@ -2,41 +2,27 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const orderSchema = new Schema({
- gigId:{
-    type:String,
-    require:true
- },
- img:{
-    type:String,
-    require:false
- },
- title:{
-    type:String,
-    require:true
- },
- price:{
-    type:Number,
-    require:true
- },
- sellerId:{
-    type:String,
-    require:true
- },
- buyerId:{
-    type:String,
-    require:true
- },
- isCompleted:{
-    type:String,
-    default:false,
- },
- payment_intent:{
-    type:String,
-    default:false,
- },
- 
-},{
-timestamps:true
+    userId: {
+        type: String,
+        required: true, // The consumer who placed the order
+    },
+    gigs:[{
+      type:Schema.Types.ObjectId,
+       ref:"Gig",
+       default:[]
+    },]
+    ,
+    totalAmount: {
+        type: Number,
+      
+    },
+    orderStatus: {
+        type: String,
+        enum: ['Pending', 'Completed', 'Cancelled'],
+        default: 'Pending', // Status of the order
+    },
+}, {
+    timestamps: true,
 });
 
-export default mongoose.model("order",orderSchema)
+export default mongoose.model("order", orderSchema);

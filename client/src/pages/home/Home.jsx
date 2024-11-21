@@ -1,10 +1,9 @@
 import React from "react";
 import "./home.scss";
 import Featured from "../../components/featured/Featured";
-import Slide from "../../components/Slide/Slide";
-import { cards, projects } from "../../data";
+import Slide from "../../components/Slide/Slide"
+import {cards} from "../../data";
 import CatCard from "../../components/catCard/CatCard";
-import ProjectCard from "../../components/projectCard/ProjectCard";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -14,11 +13,12 @@ const Home = () => {
     <div className="home">
       <Featured />
       <div className="slidhome">
-        <Slide slidesToShow={5} arrowsScroll={5}>
-          {cards.map((card) => (
-            <CatCard item={card} key={card.id} />
-          ))}
-        </Slide>
+
+      <Slide slidesToShow={5} arrowsScroll={5}>
+        {cards.map((card) => (
+          <CatCard item={card} key={card.id} />
+        ))}
+      </Slide>
       </div>
 
       <div className="explore">

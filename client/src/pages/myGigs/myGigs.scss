@@ -1,54 +1,111 @@
-.myGigs {
-    margin-top:220px ;
+.myGigs4 {
+    margin-top: 140px;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .container4 {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title4 {
     display: flex;
-    justify-content: center;
-
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .title4 h1 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .title4 button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .title4 button:hover {
+    background-color: #45a049;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f9f9f9;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  td {
+    color: #666;
+  }
+  
+  .image4 {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .delete4 {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  
+  .delete4:hover {
+    opacity: 0.7;
+  }
+  
+  .loader {
+    text-align: center;
+    font-size: 18px;
+  }
+  
+  .error {
+    text-align: center;
+    font-size: 18px;
+    color: red;
+  }
+  
+  @media (max-width: 768px) {
     .container {
-        width: 1400px;
-        padding: 50px 0px;
-
-        .title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            button {
-                background: #1dbf73;
-                color: white;
-                padding: 10px;
-                border: none;
-                font-weight: 500;
-                cursor: pointer;
-            }
-        }
-
-        table {
-            width: 100%;
-
-            tr {
-                th {
-                    text-align: left;
-                }
-
-                height: 50px;
-
-                td {
-                    img {
-                        width: 50px;
-                        height: 25px;
-                        object-fit: cover;
-
-                    }
-
-                    .delete {
-                        width: 25px;
-                        cursor: pointer;
-                    }
-                }
-                &:nth-child(even){
-                    background-color: #1dbf730f;
-                }
-            }
-        }
+      padding: 10px;
     }
-}
+  
+    table {
+      font-size: 12px;
+    }
+  
+    .title h1 {
+      font-size: 20px;
+    }
+  
+    .title button {
+      font-size: 12px;
+    }
+  }
+  

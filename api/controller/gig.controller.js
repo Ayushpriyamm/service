@@ -1,14 +1,45 @@
 import Gig from '../models/gig.model.js';
 import createError from '../utils/createError.js';
-export const createGig = async (req, res, next) => {
-  if (req.isSeller === false) { return next(createError(403, 'Only Seller Create a Gig')); }
+import { uploadImageToCloudinary } from '../utils/imageUploaders.js';
+// export const createGig = async (req, res, next) => {
+//   if (req.isSeller === false) { return next(createError(403, 'Only Seller Create a Gig')); }
 
-  const newGig = new Gig({
-    userId: req.userId,
-    ...req.body
-  })
-  console.log(req.userId);
+//   const newGig = new Gig({
+//     userId: req.userId,
+//     ...req.body,
+//     cover:coverImageUrl,
+//   })
+//   console.log(req.userId);
+//   try {
+//     const savedGig = await newGig.save();
+//     res.status(201).json(savedGig);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
+export const createGig = async (req, res, next) => {
+  if (!req.isSeller) {
+    return next(createError(403, "Only Sellers can create a Gig"));
+  }
+
   try {
+    let coverImageUrl = "";
+    console.log("cover",req.body.cover);
+    if (req.body.cover) {
+      const result = await uploadImageToCloudinary(
+        req.body.cover,
+        process.env.FOLDER_NAME
+      )
+      coverImageUrl = result.secure_url;
+    }
+    console.log("coverimage after upload",coverImageUrl);
+
+    const newGig = new Gig({
+      userId: req.userId,
+      ...req.body,
+      cover: coverImageUrl,
+    });
+
     const savedGig = await newGig.save();
     res.status(201).json(savedGig);
   } catch (error) {
@@ -30,6 +61,7 @@ export const deleteGig = async (req, res, next) => {
 export const getGig = async (req, res, next) => {
   try {
     const gig = await Gig.findById(req.params.id);
+    console.log("gig",gig);
     if (!gig) return next(createError(404, 'Gig not found'));
     res.status(200).send(gig);
   } catch (err) {

@@ -8,9 +8,10 @@ const Register = () => {
   const [user, setUser] = useState({
     username: "",
     email: "",
-    passwors: "",
+    password: "",
     img: "",
     country: "",
+    phone: "",
     isSeller: false,
     desc: "",
   });
@@ -47,38 +48,53 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <div className="left">
           <h1>Create a new account</h1>
-          <label htmlFor="">Username</label>
+          <label htmlFor="username">Username</label>
           <input
             name="username"
             type="text"
             placeholder="johndoe"
             onChange={handlechange}
           />
-          <label htmlFor="">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             name="email"
             type="email"
-            placeholder="email"
+            placeholder="email@example.com"
             onChange={handlechange}
           />
-          <label htmlFor="">Password</label>
-          <input name="password" type="password" onChange={handlechange} />
-          <label htmlFor="">Profile Picture</label>
+          <label htmlFor="password">Password</label>
+          <input name="password" type="password" 
+          placeholder="********"
+          onChange={handlechange} />
+
+          <label htmlFor="img">Profile Picture</label>
           <input
             type="file"
+            name="img"
             onChange={(e) => {
               setFile(e.target.files[0]);
             }}
           />
-          <label htmlFor="">Country</label>
+          <label htmlFor="country">Country</label>
           <input
             name="country"
             type="text"
-            placeholder="Usa"
+            placeholder="INDIA"
             onChange={handlechange}
+          />
+           <label htmlFor="phone">Phone Number</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            placeholder="+1 234 567 89"
+            onChange={handlechange}
+            pattern="[\+]?[0-9]{1,4}[-\s]?[0-9]{1,15}" 
+            required
           />
           <button type="submit">Register</button>
         </div>
+
         <div className="right">
           <h1>I want to become a seller</h1>
           <div className="toggle">
@@ -88,25 +104,19 @@ const Register = () => {
               <span className="slider round"></span>
             </label>
           </div>
-          <label htmlFor="">Phone Number</label>
-          <input
-            name="phone"
-            type="text"
-            placeholder="+1 234 567 89"
-            onChange={handlechange}
-          />
-          <label htmlFor="">Description</label>
+
+          <label htmlFor="desc">Description</label>
           <textarea
             placeholder="A short description of yourself"
             name="desc"
-            id=""
+            id="desc"
             cols="30"
             rows="10"
             onChange={handlechange}
           ></textarea>
         </div>
       </form>
-    </div>,
+    </div>
   ];
 };
 export default Register;

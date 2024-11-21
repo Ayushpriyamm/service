@@ -35,8 +35,16 @@ app.use('/api/reviews', reviewRoute);
 app.use('/api/orders', orderRoute);
 app.use('/api/conversations', conversationRoute);
 app.use('/api/messages', messageRoute);
+import { cloudinaryConnect } from "./config/cloudinary.js";
+import fileUpload from "express-fileupload";
 
-
+app.use(
+	fileUpload({
+		useTempFiles: true,
+		tempFileDir: "/tmp/",
+	})
+);
+cloudinaryConnect();
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500
   const errorMessage = err.message || "Something went wrong"
