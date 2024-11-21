@@ -1,14 +1,16 @@
 import Jwt from 'jsonwebtoken';
-import createError from '../utils/createError.js';
-export const verifyToken=async(req,res,next)=>{
-    
-    const token = req.cookies.accessToken;
-    if (!token) return next(createError(401,'you are not authcaticated'));
-    
-    Jwt.verify(token, process.env.JWT_KEY, async (err, payload) => {
-        if (!token) return next(createError(403,'token is not valid'));
-        req.userId=payload.id;
-        req.isSeller=payload.isSeller;
-        next()//go to deleteUser
-    })
-}
+
+export const verifyToken = (req, res, next) => {
+  const token = req.headers["authorization"]?.split(" ")[1]; // Extract token from "Bearer <token>"
+  if (!token) {
+    return res.status(401).send("Token is missing or invalid");
+  }
+
+  Jwt.verify(token, process.env.JWT_KEY, (err, user) => {
+    if (err) {
+      return res.status(403).send("Token is invalid or expired");
+    }
+    req.user = user;
+    next();
+  });
+};

@@ -37,7 +37,9 @@ function App() {
       <QueryClientProvider client={queryClient} key={55}>
         <div className='app'>
           <Navbar key={3} />
+           <div className="main-content">
           <Outlet key={5454} />
+        </div>
           <hr></hr>
           <Footer key={6563}/>
         </div>
