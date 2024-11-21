@@ -1,52 +1,49 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
-
+const phoneRegex = /^[+]*[0-9]{1,4}[.\s-]?([0-9]{1,4}[.\s-]?){2,4}$/;
 const userSchema = new Schema({
-  username:{
-    type:String,
-    require:true,
-    unique:true
+  username: {
+    type: String,
+    required: true, 
+    unique: true,
   },
-  email:{
-    type:String,
-    require:true,
-    unique:true
+  email: {
+    type: String,
+    required: true, 
+    unique: true,
   },
-  password:{
-    type:String,
-    require:true,
+  password: {
+    type: String,
+    required: true, 
   },
-  img:{
-    type:String,//store url
-    require:false,
+  img: {
+    type: String, // Store URL
+    required: false,
   },
-  country:{
-    type:String,
-    require:true,
+  country: {
+    type: String,
+    required: true,
   },
-  phone:{
-    type:String,
-    require:false,
+  phone: {
+    type: String,
+    required: true,
+    match: [phoneRegex, 'Please enter a valid phone number'],
   },
-  password:{
-    type:String,
-    require:true,
+  desc: {
+    type: String,
+    required: false,
   },
-  desc:{
-    type:String,
-    require:false,
+  isSeller: {
+    type: Boolean,
+    default: false,
+    required: true,
   },
-  isSeller:{
-    type:Boolean,
-    default:false,
-    require:true,
+  verified: {
+    type: Boolean,
+    default: false,
   },
-  verified:{
-    type:Boolean,
-    default:false,
-  },
-},{
-timestamps:true
+}, {
+  timestamps: true,
 });
 
-export default mongoose.model("user",userSchema)
+export default mongoose.model("User", userSchema);

@@ -29,18 +29,18 @@ function MyGigs() {
     mutation.mutate(id);
   };
   return (
-    <div className="myGigs">
+    <div className="myGigs4">
       {isLoading ? (
         "loading"
       ) : error ? (
         "error"
       ) : (
-        <div className="container">
-          <div className="title">
-            <h1>Gigs</h1>
+        <div className="container4">
+          <div className="title4">
+            <h1>Jobs</h1>
             {currentUser.isSeller && (
               <Link to="/add">
-                <button>Add New Gig</button>
+                <button>Add New Job</button>
               </Link>
             )}
           </div>
@@ -56,14 +56,14 @@ function MyGigs() {
             {data.map((gig) => (
               <tr key={gig._id}>
                 <td>
-                  <img className="image" src={gig.cover} alt="" />
+                  <img className="image4" src={gig.cover} alt="" />
                 </td>
                 <td>{gig.title}</td>
                 <td>{gig.price}</td>
                 <td>{gig.sales}</td>
                 <td>
                   <img
-                    className="delete"
+                    className="delete4"
                     src="/images/delete.png"
                     alt=""
                     onClick={() => handleDelete(gig._id)}

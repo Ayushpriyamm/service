@@ -1,13 +1,14 @@
-.add {
+.add5 {
   display: flex;
-  // flex-direction: column;
-  // justify-content: center;
+  flex-direction: column;
+  justify-content: center;
   font-family: 'Montserrat', 'sans-serif';
+  align-items: center;
   margin-top: 80px;
 
-  .container {
+  .container5 {
     display: flex;
-    width: 1400px;
+    width: 50%;
     flex-direction: column;
     justify-content: center;
     padding: 50px 0px;
@@ -18,14 +19,14 @@
       font-weight: 300;
     }
 
-    .sections {
+    .sections5 {
       display: flex;
          
       justify-content:space-evenly;
       gap: 100px;
 
-      .left,
-      .right {
+      .left5,
+      .right5 {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -49,12 +50,12 @@
           }
         }
 
-        .images {
+        .images5 {
           display: flex;
           align-items: center;
           gap: 20px;
 
-          .imagesInputs {
+          .imagesInputs5 {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -71,7 +72,7 @@
           cursor: pointer;
         }
 
-        .add {
+        .add5 {
           display: flex;
           justify-content: space-between;
 
@@ -79,7 +80,7 @@
             width: 70%;
           }
         }
-        .addedFeatures{
+        .addedFeatures5{
           display: flex;gap: 20px;
           button{
             height: 30px;

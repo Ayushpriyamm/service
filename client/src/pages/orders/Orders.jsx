@@ -1,65 +1,98 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './orders.scss';
-import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
+
 const Orders = () => {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const navigate = useNavigate();
-    const { isLoading, error, data } = useQuery({
-        queryKey: ['orders'],
-        queryFn: () =>
-            newRequest.get(`/orders`)
-                .then((res) => {
-                    return res.data;
-                })
-    });
+  const [order, setOrder] = useState(null);
+  const [usernames, setUsernames] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    const handleContact = async (order) => {
-        const sellerId = order.sellerId;
-        const buyerId = order.buyerId;
-        const id = sellerId + buyerId;
+  const navigate = useNavigate();
+
+  // Fetch order data
+  useEffect(() => {
+    const fetchOrder = async () => {
+      try {
+        const response = await newRequest.get('/orders/getorder');
+        setOrder(response.data);
+        setIsLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setIsLoading(false);
+      }
+    };
+
+    fetchOrder();
+  }, []);
+
+  // Fetch usernames based on serviceProviderId
+  useEffect(() => {
+    const fetchUsernames = async () => {
+      if (order && order.gigs.length > 0) {
         try {
-            const res = await newRequest.get(`/conversations/single/${id}`);
-            navigate(`/message/${res.data.id}`)
-
-        } catch (error) {
-            // console.log(error);
-            if (error.response.status===404) {
-                const res = await newRequest.post(`/conversations`, { to: currentUser.isSeller ? buyerId : sellerId });
-                navigate(`/message/${res.data.id}`)
+          const userPromises = order.gigs.map(async (gig) => {
+            if (gig.serviceProviderId) {
+              const userResponse = await newRequest.get(`/users/${gig.serviceProviderId}`);
+              return { [gig.serviceProviderId]: userResponse.data.username };
             }
+            return null;
+          });
+
+          const userResponses = await Promise.all(userPromises);
+          const usernameMap = userResponses.reduce((acc, current) => {
+            if (current) {
+              return { ...acc, ...current };
+            }
+            return acc;
+          }, {});
+          setUsernames(usernameMap);
+        } catch (err) {
+          setError(err.message);
         }
-    }
-    console.log(data);
-    return ([
-        <div className="orders">
-            {isLoading ? "loading" : error ? "something went wrong" : <div className="container">
-                <div className="title">
-                    <h1>Orders</h1>
-                </div>
-                <table>
-                    <tr>
-                        <th>Image</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Contact</th>
-                    </tr>
-                    {data.map((order) => (
-                        <tr key={order._id}>
-                            <td>
-                                <img src={data.img} alt="" className="img" />
-                            </td>
-                            <td>{order.title}</td>
-                            <td>{order.price}</td>
-                            <td>
-                                <img className="message" src="/images/message.png" alt="" onClick={() => handleContact(order)} />
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </div>}
+      }
+    };
+
+    fetchUsernames();
+  }, [order]);
+
+  if (isLoading) {
+    return <div className="loader"></div>;
+  }
+
+  if (error) {
+    return <h4>Something went wrong: {error}</h4>;
+  }
+
+  return (
+    <div className="orders">
+      {order && order.gigs.length > 0 ? (
+        <div className="order-details">
+          <h1>Order Summary</h1>
+          <div className="gigs-list">
+            {order.gigs.map((gig, index) => (
+              <div className="gig-item" key={index}>
+                {/* Access and display specific properties of the gig object */}
+                <h2>Job {index + 1}</h2>
+                <p>Title: {gig.title}</p>  {/* Show the title of the gig */}
+                <p>Description: {gig.desc}</p> {/* Show the description of the gig */}
+                <p>Price: Rs.{gig.price}</p> {/* Show the price of the gig */}
+                <p>Delivery Time: {gig.deliveryTime}</p> {/* Show the delivery time */}
+                {/* Fetch and display username based on serviceProviderId */}
+                <p>Service Provider: {usernames[gig.serviceProviderId] || "Unknown"}</p>
+              </div>
+            ))}
+          </div>
+          <div className="total-amount">
+            <h3>Total Amount: Rs.{order.totalAmount}/-</h3>
+          </div>
         </div>
-    ]);
-}
+      ) : (
+        <p>No Jobs in your order yet.</p>
+      )}
+    </div>
+  );
+};
+
 export default Orders;

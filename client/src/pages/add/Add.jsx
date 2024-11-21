@@ -68,12 +68,12 @@ const Add = () => {
     navigate("/mygigs");
   };
   return [
-    <div className="add">
-      <div className="container">
+    <div className="add5">
+      <div className="container5">
         <h1>Add New Gig</h1>
-        <div className="sections">
-          <div className="left">
-            <label htmlFor="title">Job Title</label>
+        <div className="sections5">
+          <div className="left5">
+            <label htmlFor="title5">Job Title</label>
             <input
               type="text"
               name="title"
@@ -97,8 +97,8 @@ const Add = () => {
               </option>
               <option value="Tiler">Tiler</option>
             </select>
-            <div className="images">
-              <div className="imagesInputs">
+            <div className="images5">
+              <div className="imagesInputs5">
                 <label htmlFor="dp">Cover Image</label>
                 <input
                   type="file"
@@ -167,9 +167,9 @@ const Add = () => {
               <input type="text" placeholder="e.g. page design" />
               <button type="submit">add </button> */}
             {/* </form> */}
-            <div className="addedFeatures">
+            <div className="addedFeatures5">
               {state?.features?.map((f) => (
-                <div className="item" key={f}>
+                <div className="item5" key={f}>
                   <button
                     onClick={() =>
                       dispatch({

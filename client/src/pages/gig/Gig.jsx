@@ -1,12 +1,11 @@
 import React from "react";
 import "./Gig.scss";
-import Slider from "react-slick"; // Import from react-slick
-import { useQuery } from "@tanstack/react-query";
+import Slider from "react-slick";
+import { useQuery,useMutation } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { Link, useParams } from "react-router-dom";
 import Reviews from "../../components/reviews/Reviews";
 
-// Add slick-carousel CSS
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -19,7 +18,7 @@ const Gig = () => {
   });
 
   const userId = data?.userId;
-
+ console.log("userId",userId);
   const {
     isLoading: isLoadingUser,
     error: errorUser,
@@ -29,7 +28,8 @@ const Gig = () => {
     queryFn: () => newRequest.get(`/users/${userId}`).then((res) => res.data),
     enabled: !!userId,
   });
-
+  console.log("erroruser",errorUser)
+console.log("datauser",dataUser);
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -37,7 +37,17 @@ const Gig = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const contactNumber = dataUser?.phone;
 
+  const CreateOrder=useMutation({
+    mutationKey:["createorder"],
+    mutationFn:()=>{
+       const body={
+        gigId:id
+       }
+        return newRequest.post("/orders/addorder",body)
+    },
+ })
   return (
     <div className="gig">
       {isLoading ? (
@@ -47,9 +57,6 @@ const Gig = () => {
       ) : (
         <div className="container">
           <div className="left">
-            <span className="breadcrumbs">
-              FIVERR &gt; GRAPHICS & DESIGN &gt;
-            </span>
             <h1>{data.title}</h1>
             {isLoadingUser ? (
               "loading"
@@ -85,7 +92,7 @@ const Gig = () => {
                 </div>
               ))}
             </Slider>
-            <h2>About This gig</h2>
+            <h2>About This Job</h2>
             <p>{data.desc}</p>
             {isLoadingUser ? (
               "Loading"
@@ -116,9 +123,24 @@ const Gig = () => {
                           </span>
                         </div>
                       )}
-                      <Link to="/message">
-                      <button>Contact Me</button>
-                      </Link>
+                      {/*  */}
+                      {/* {contactNumber && (
+                        <a
+                          href={`tel:+91${contactNumber}`}
+                          style={{ textDecoration: "none" }}
+                          aria-label={`Call user at +91 ${contactNumber}`}
+                        >
+                          <button className="cont">Contact Me</button>
+                        </a>
+                      )} */}
+
+                      {/*  */}
+                      <a
+                        href={`tel:+91${contactNumber}`}
+                        style={{ cursor: "pointer", textDecoration: "none" }}
+                      >
+                        <button className="cont"> Contact Me</button>
+                      </a>
                     </div>
                   </div>
                 )}
@@ -154,20 +176,11 @@ const Gig = () => {
           </div>
           <div className="right">
             <div className="price">
-              <h3>{data.sortTitle}</h3>
-              <h2>${data.price}</h2>
+              <h2>Rs.{data.price}/-</h2>
             </div>
+
             <p>{data.sortDesc}</p>
-            <div className="details">
-              <div className="item">
-                <img src="/images/clock.png" alt="" />
-                <span>{data.deliveryTime} days Delivery</span>
-              </div>
-              <div className="item">
-                <img src="/images/recycle.png" alt="" />
-                <span>{data.rivisonNumber} Revisions</span>
-              </div>
-            </div>
+
             <div className="features">
               {data.features.map((feature) => (
                 <div className="item" key={feature}>
@@ -176,9 +189,8 @@ const Gig = () => {
                 </div>
               ))}
             </div>
-            <Link to={`/pay/${id}`}>
-              <button>Continue</button>
-            </Link>
+
+              <button onClick={()=>{CreateOrder.mutate()}}>Add To Order</button>
           </div>
         </div>
       )}

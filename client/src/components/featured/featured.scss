@@ -2,19 +2,11 @@
   height: 600px;
   display: flex;
   justify-content: center;
-  // background-color: antiquewhite;
-  color:black;
-  // overflow: hidden;
+  color: black;
   background-position: center;
-  // background-size: cover;
-  // background-position: center;
-  animation-delay: 0ms;
+  // animation-delay: 0ms;
 
   .container {
-    // margin: 0%;
-    // padding: 0%;
-    // overflow-x: hidden;
-    // width: 100%;
     display: flex;
     justify-items: center;
     align-items: center;
@@ -38,31 +30,38 @@
       }
 
       .search {
-        border: 1px solid black;
+        border: 1px solid #ccc;
         background-color: white;
         border-radius: 5px;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        overflow: hidden;
+        // padding: 5px 10px;
+        padding-left: 10px;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
 
         .searchInput {
           display: flex;
           align-items: center;
           gap: 10px;
+          flex: 1;
 
           img {
             width: 20px;
             height: 20px;
-            margin: 10px;
           }
 
           input {
+            flex: 1;
+            padding: 10px;
             border: none;
-
-
+            outline: none;
+            font-size: 16px;
+            color: #333;
+            background-color: transparent;
             &::placeholder {
-              color:black;
+              color: #aaa;
             }
           }
         }
@@ -71,11 +70,17 @@
           width: 120px;
           height: 50px;
           border: none;
-          background-color:rgb(207, 207, 245);
+          background-color: rgb(207, 207, 245);
           color: black;
           cursor: pointer;
           font-weight: 400;
           font-size: large;
+          margin-left: 10px;
+          border-radius: 5px;
+
+          &:hover {
+            background-color: #b0b0ff;
+          }
         }
       }
 
@@ -83,8 +88,8 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        font-family: 'Montserrat', 'sans-serif';
-        font-size: 16px/24px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
 
         span {
           width: max-content;
@@ -92,13 +97,13 @@
 
         button {
           width: max-content;
-          color:black;
+          color: black;
           border: 1px solid black;
           padding: 5px 10px;
           border-radius: 20px;
           background-color: transparent;
           font-size: 14px;
-          font-family: 'Montserrat', 'sans-serif';
+          font-family: 'Montserrat', sans-serif;
 
           &:hover {
             background: white;
@@ -107,29 +112,5 @@
         }
       }
     }
-  }
-}
-
-@keyframes change {
-  0% {
-    background-image: url('hero1.webp');
-  }
-  20% {
-    background-image: url('hero2.webp');
-  }
-  40% {
-    background-image: url('hero3.webp');
-  }
-
-  60% {
-    background-image: url('hero4.webp');
-  }
-
-  80% {
-    background-image: url('hero5.webp');
-  }
-
-  100% {
-    background-image: url('hero6.webp');
   }
 }
